@@ -1,14 +1,18 @@
-:root{
-  --primary-color: #4CAF50;
-  --secondary-color:#f44336;
-  --background-color: #f4f4f4;
-  --text-color: #333;
-  --font-family: 'Arial', sans-serif;
-  --font-size: 16px;
-  --border-radius: 5px;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --transition-duration: 0.3s;
+/* =========================================================
+   Variables globales
+   ========================================================= */
+:root {
+  --primary-color:   #4CAF50;
+  --primary-dark:    #45a049;
+  --secondary-color: #f44336;
+  --background-color:#f4f4f4;
+  --text-color:      #333;
+  --transition:      0.3s ease;
 }
+
+/* =========================================================
+   Layout base
+   ========================================================= */
 html, body {
   height: 100%;
   margin: 0;
@@ -16,208 +20,124 @@ html, body {
 }
 
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
   background-color: var(--background-color);
   color: var(--text-color);
-  margin: 0;
-  padding: 0;
-  padding-bottom: 80px; /* ✅ deja espacio al footer fijo */
-}
-header {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 1rem;
-  text-align: center;
+  min-height: 100vh;
   display: flex;
-  align-items: center;      /* ✅ alinea verticalmente */
-  justify-content: space-between; /* ✅ separa extremos */
-  position: relative;       /* ✅ necesario para el menú absoluto en móvil */
-}
-/*** Navigation Styles
- */
-nav {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-}
-nav ul {
-   list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;                /* ✅ mejor que margin en cada <a> */
-  margin-left: auto;        /* ✅ empuja a la derecha */
-  margin-right: 1rem;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-}
-nav a:hover {
-  text-decoration: underline;
-}
-nav a.active {
-  font-weight: bold;
-}
-header h1 {
-  margin: 0;
-  font-size: 2rem;
+  flex-direction: column;
 }
 
-/*** Login Form Styles
- */
- .login-container {
-   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 160px); /* header + footer */
-  padding: 1rem;
- }
-.login-container form {
-  background-color: white;
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  width: 100%;
-  max-width: 400px;
-}
-.login-container label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-.login-container input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: var(--border-radius);
-}
-.login-container button {
-  width: 100%;
-  padding: 0.75rem;
+main { flex: 1; }
+
+/* =========================================================
+   Navbar (ajustes sobre Bootstrap)
+   ========================================================= */
+#app-navbar .navbar {
   background-color: var(--primary-color);
-  color: white;
+}
+
+#app-navbar .navbar-brand img {
+  object-fit: contain;
+}
+
+#app-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  transition: color var(--transition);
+}
+
+#app-navbar .nav-link:hover,
+#app-navbar .nav-link.active {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Tarjeta de autenticación
+   ========================================================= */
+.auth-card {
+  max-width: 440px;
+  margin: 2rem auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color var(--transition-duration);
 }
-.login-container button:hover {
-  background-color: #45a049; /* Darker shade of primary color */
+
+.auth-card h1 {
+  color: var(--primary-color);
 }
-/*** Validation Message Styles
- */
-.validation-message {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
-  display: none; /* Hidden by default */
-}
-.validation-message.error {
-  background-color: var(--secondary-color);
-  color: white;
-}
-.validation-message.success {
+
+/* =========================================================
+   Botones personalizados
+   ========================================================= */
+.btn-success {
   background-color: var(--primary-color);
-  color: white;
+  border-color: var(--primary-color);
+  transition: background-color var(--transition);
 }
-/*** Preloader Styles
- */
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+/* =========================================================
+   Alertas
+   ========================================================= */
+#login-alert,
+#forgot-alert,
+#change-alert {
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   Preloader
+   ========================================================= */
 .preloader {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  display: none;              /* ✅ oculto por defecto */
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity var(--transition-duration);
-}
-.spinner {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-}
-/** footer Styles */
-footer {
-  background-color: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  opacity: 0;
+  transition: opacity var(--transition);
 }
 
-footer p {
-  margin: 0;
-}
-.toggle-button {
-  display: none;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  font-size: 1.5rem;
-}
-.logo {
-  height: 40px;
-  margin-left: 1rem;
-}
-.checkbox-group {
+.preloader.is-visible {
   display: flex;
-  text-align: left;
-  margin-bottom: 1rem;
+  opacity: 1;
 }
-.checkbox-group label {text-align: left; margin-bottom: 0; }
-/** Responsive Styles
- */
-@media (max-width: 600px) {
-  .login-container form {
+
+/* =========================================================
+   Footer
+   ========================================================= */
+#app-footer footer {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+#app-footer p { margin: 0; }
+
+/* =========================================================
+   Inputs inválidos
+   ========================================================= */
+.form-control.is-invalid {
+  border-color: var(--secondary-color);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 576px) {
+  .auth-card {
+    margin: 1rem auto;
     padding: 1rem;
-  }
-  .toggle-button {
-    display: block;
-  }
-  nav {
-     display: none;
-    position: absolute;
-    top: 100%;              /* debajo del header */
-    right: 0;
-    width: 200px;
-    background-color: var(--secondary-color);
-    border-radius: var(--border-radius);
-    z-index: 1000;
-  }
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 0;
-    position: static;       /* ✅ ya no absoluto */
-    width: 100%;
-   
-  }
- nav ul li {
-    width: 100%;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.3);
-    padding: 0.5rem 0;
-  }
-  nav a {
-    margin: 0.5rem 0;
-  }
-  nav a.active {
-    font-weight: bold;
-  }
-} 
-@media (max-width: 400px) {
-  .login-container form {
-    padding: 0.5rem;
-  }
-  .login-container button {
-    padding: 0.5rem;
   }
 }
