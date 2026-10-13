@@ -4,64 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+  <title>Document</title>
 
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Login</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="spinner">Cargando...</div>
-  </div>
-  <!-- Header -->
-  <header>
-    <button class="toggle-button" id="toggle-button">☰</button>
-    <img src="assets/img/logo.png" alt="Logo de la empresa" class="logo">
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <!-- Main content -->
-  <div class="login-container">
-
-    <form id="login-form" action="/login" method="POST">
-      <h1>Login </h1>
-      <div class="validation-message" id="message-from-server">
-        <p></p>
-      </div>
-
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" data-type="password" name="password"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#?!@$%^&*\-]).{8,}$"
-          title="Mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial" required>
-      </div>
-      <div class="form-group checkbox-group">
-        <input type="checkbox" id="show-password" name="show-password">
-        <label for="show-password">Show Password</label>
-      </div>
-
-      <button type="submit">Login</button>
-    </form>
+  <div class="wrapper">
+    <div>
+      <app-list data-title="Lista de Usuarios" data-url="https://jsonplaceholder.typicode.com/users"
+        data-field="name"></app-list>
+    </div>
+    <div>
+      <app-list data-title="Lista de fotos" data-url="https://jsonplaceholder.typicode.com/photos?albumId=1"
+        data-field="thumbnailUrl" modePicture="true"></app-list>
+    </div>
 
   </div>
-  <footer>
-    <p>&copy; 2024 My Website. All rights reserved.</p>
-  </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="./assets/js/main.js"></script>
 
 </body>
 
